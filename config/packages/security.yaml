@@ -1,0 +1,20 @@
+security:
+    # ⚡ Même si pas d'utilisateur, on définit un hasher "null"
+    password_hashers:
+        Symfony\Component\Security\Core\User\User: 'plaintext'
+
+    # Firewalls
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            stateless: true
+            security: false  # désactive complètement l'authentification
+
+    # Contrôle d'accès
+    access_control:
+        - { path: ^/api/contact, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [POST] }
+        - { path: ^/api/skills, roles: IS_AUTHENTICATED_ANONYMOUSLY, methods: [GET] }
